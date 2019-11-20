@@ -1,0 +1,5 @@
+language: generic
+services:
+  - docker
+install:
+  - docker run -it -v `pwd`/test:/tests/:ro -v `pwd`/reports:/out:rw eficode/robotframework-selenium-chrome --outputdir /out /tests
