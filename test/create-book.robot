@@ -1,13 +1,14 @@
 *** Settings ***
-Library             SeleniumLibrary
+Library             Selenium2Library
 Library             OperatingSystem
 Library             BuiltIn
 Library             DateTime
 Resource            ./keywords/create-book-keyword.robot
 Resource            ./keywords/common-keyword.robot
 
-Suite Setup         Go to Home Page
-Suite Teardown      Close All Browsers
+Test Setup          Run Keywords        Go to Home Page
+    ...             AND                 Click button add book
+Test Teardown      Close All Browsers
 
 *** Test Cases ***
 Verify when search ISBN : 0201558025 just show detail
@@ -24,5 +25,17 @@ Verify when search ISBN : 0201558025 just show detail
 Add book ISBN : 0201558025 for Read Odds
     [Tags]      AddBooks
     Search ISBN 0201558025
+    Wait time 2s
     Fill in Tags : math
     Fill in Tags : คณิตศาสตร์
+
+กรณีกรอก ISBN : 1234567890 แต่ไม่มีข้อมูลหนังสือ 
+    [Tags]      AddBooks1
+    Search ISBN 1234
+    Show message error : Not Found ISNB No. 1234
+    # Fill in ISBN : 1234
+    Fill in Title : Bridging the communication gap
+    Fill in Author : wowwww
+    Fill in Publishers : yeah!
+    Fill in Tags : tester
+    Fill in Tags : Bra~
