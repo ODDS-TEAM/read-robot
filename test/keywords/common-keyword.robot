@@ -1,6 +1,5 @@
 *** Variables ***
-# ${url}              http://read.odds.team/
-${url}              http://localhost:3000/findbook
+${url}              http://read.odds.team/
 ${browser}          chrome
 
 *** Keywords ***
